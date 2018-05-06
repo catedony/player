@@ -4,14 +4,9 @@ var controls = document.querySelector('.controls');
 var scrollBar = document.getElementById('scrollBar');
 var time = document.querySelector('.currentTime');
 var volume = document.getElementById('volume');
+var fullscreen = document.getElementById('fullscreen');
 
-function displayTiming() {
-var currentMinutes = Math.floor(video.currentTime/60);
-var currentSeconds = Math.floor(video.currentTime - (currentMinutes * 60));
-var durationMinutes = Math.floor(video.duration/60);
-var durationSeconds = Math.floor(video.duration - (durationMinutes * 60));
-time.innerHTML = currentMinutes + ':'+ currentSeconds + '/' + durationMinutes + ':'+ durationSeconds;
-}
+fullscreen.addEventListener('click', runFullscreen);
 scrollBar.addEventListener('change', changeCurrentTime);
 volume.addEventListener('change', changeVolume);
 playBtn.addEventListener('click', playVideo);
@@ -22,6 +17,25 @@ video.addEventListener('timeupdate', displayTiming);
 video.addEventListener('timeupdate', setCurrentTime);
 // video.addEventListener('mouseover', showControls);
 // video.addEventListener('mouseout', hideControls);
+
+function runFullscreen() {
+	if (video.requestFullscreen) {
+		video.requestFullscreen();
+	} else if (video.msRequestFullscreen) {
+		video.msRequestFullscreen();
+	} else if (video.mozRequestFullScreen) {
+		video.mozRequestFullScreen();
+	} else if (video.webkitRequestFullscreen) {
+		video.webkitRequestFullscreen();
+	}
+}
+function displayTiming() {
+	var currentMinutes = Math.floor(video.currentTime/60);
+	var currentSeconds = Math.floor(video.currentTime - (currentMinutes * 60));
+	var durationMinutes = Math.floor(video.duration/60);
+	var durationSeconds = Math.floor(video.duration - (durationMinutes * 60));
+	time.innerHTML = currentMinutes + ':'+ currentSeconds + '/' + durationMinutes + ':'+ durationSeconds;
+	}
 function setCurrentTime() {
 	scrollBar.value = Math.floor(100 / video.duration * video.currentTime);
 }

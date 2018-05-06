@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="player">
-		<video id="video" controls poster="sreen.jpg" width="700">
+		<video id="video" poster="sreen.jpg" width="700">
 			Your browser doesn`t support video :-(
 			<source src="https://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_720p_h264.mov" type="video/mov">
 			<source src="https://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_720p_surround.avi" type="video/avi">
@@ -21,6 +21,7 @@
 		<span class="currentTime"></span>
 		<i class="fa fa-volume-up" aria-hidden="true"></i>
 		<input id="volume" type="range" min="0" max="100" value="99">
+		<button id="fullscreen"><i class="fa fa-expand" aria-hidden="true"></i></button>
 	</nav>
 	</div>
 	<script src="script.js"></script>
