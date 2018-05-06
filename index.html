@@ -9,19 +9,19 @@
 </head>
 <body>
 	<div class="player">
-		<video id="video" poster="sreen.jpg" width="700">
+		<video class="video" poster="sreen.jpg">
 			Your browser doesn`t support video :-(
 			<source src="https://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_720p_h264.mov" type="video/mov">
 			<source src="https://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_720p_surround.avi" type="video/avi">
 			<source src="https://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_720p_stereo.ogg" type="video/ogg">
 		</video>
 	<nav class="controls">
-		<button id="play-pause"><i class="fa fa-play" aria-hidden="true"></i></button>
-		<input id="scrollBar" type="range" step="0.5">
-		<span class="currentTime"></span>
-		<i class="fa fa-volume-up" aria-hidden="true"></i>
-		<input id="volume" type="range" min="0" max="100" value="99">
-		<button id="fullscreen"><i class="fa fa-expand" aria-hidden="true"></i></button>
+		<button class="play-pause-btn btn"><i class="fa fa-play" aria-hidden="true"></i></button>
+		<input class="scroll-bar" type="range" step="0.1">
+		<span class="current-time"></span>
+		<span class="volume-icon"><i class="fa fa-volume-up" aria-hidden="true"></i></span>
+		<input class="volume" type="range" min="0" max="100" value="99">
+		<button class="fullscreen btn"><i class="fa fa-expand" aria-hidden="true"></i></button>
 	</nav>
 	</div>
 	<script src="script.js"></script>

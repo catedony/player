@@ -1,10 +1,10 @@
-var video = document.getElementById('video');
-var playBtn = document.getElementById('play-pause');
+var video = document.querySelector('.video');
+var playBtn = document.querySelector('.play-pause-btn');
 var controls = document.querySelector('.controls');
-var scrollBar = document.getElementById('scrollBar');
-var time = document.querySelector('.currentTime');
-var volume = document.getElementById('volume');
-var fullscreen = document.getElementById('fullscreen');
+var scrollBar = document.querySelector('.scroll-bar');
+var time = document.querySelector('.current-time');
+var volume = document.querySelector('.volume');
+var fullscreen = document.querySelector('.fullscreen');
 
 fullscreen.addEventListener('click', runFullscreen);
 scrollBar.addEventListener('change', changeCurrentTime);
