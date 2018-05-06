@@ -4,22 +4,35 @@ var controls = document.querySelector('.controls');
 var scrollBar = document.getElementById('scrollBar');
 var time = document.querySelector('.currentTime');
 var volume = document.getElementById('volume');
-var currentMinutes = Math.floor(video.currentTime/60);
-var currentSeconds = video.currentTime - (currentMinutes * 60);
-time.innerHTML = currentMinutes + ':'+ currentSeconds + '/' + video.duration;
 
+function displayTiming() {
+var currentMinutes = Math.floor(video.currentTime/60);
+var currentSeconds = Math.floor(video.currentTime - (currentMinutes * 60));
+var durationMinutes = Math.floor(video.duration/60);
+var durationSeconds = Math.floor(video.duration - (durationMinutes * 60));
+time.innerHTML = currentMinutes + ':'+ currentSeconds + '/' + durationMinutes + ':'+ durationSeconds;
+}
 scrollBar.addEventListener('change', changeCurrentTime);
 volume.addEventListener('change', changeVolume);
 playBtn.addEventListener('click', playVideo);
+video.addEventListener('loadedmetadata', displayTiming);
+video.addEventListener('loadedmetadata', setCurrentTime);
+video.addEventListener('canplaythrough', setVolume);
+video.addEventListener('timeupdate', displayTiming);
+video.addEventListener('timeupdate', setCurrentTime);
 // video.addEventListener('mouseover', showControls);
 // video.addEventListener('mouseout', hideControls);
-
+function setCurrentTime() {
+	scrollBar.value = Math.floor(100 / video.duration * video.currentTime);
+}
+function setVolume() {
+	volume.value = video.volume * 100;
+}
 function changeVolume() {
 	video.volume = this.value / 100;
 }
 function changeCurrentTime() {
 	video.currentTime = video.duration / 100 * this.value;
-	time.innerHTML = video.currentTime + '/' + video.duration;
 }
 function showControls() {
 	controls.style.visibility = 'visible';
