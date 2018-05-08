@@ -34,19 +34,25 @@ function displayTiming() {
 	var currentSeconds = Math.floor(video.currentTime - (currentMinutes * 60));
 	var durationMinutes = Math.floor(video.duration/60);
 	var durationSeconds = Math.floor(video.duration - (durationMinutes * 60));
-	time.innerHTML = currentMinutes + ':'+ currentSeconds + '/' + durationMinutes + ':'+ durationSeconds;
+	time.innerHTML = currentMinutes + ':'+ currentSeconds + ' / ' + durationMinutes + ':'+ durationSeconds;
 	}
 function setCurrentTime() {
-	scrollBar.value = Math.floor(100 / video.duration * video.currentTime);
+	scrollBar.value = Math.floor(1000 / video.duration * video.currentTime);
 }
 function setVolume() {
 	volume.value = video.volume * 100;
 }
 function changeVolume() {
 	video.volume = this.value / 100;
+	var icon = document.querySelector('.volume-icon');
+	if (video.volume == 0) {
+			icon.innerHTML = '<i class="fa fa-volume-off" aria-hidden="true"></i>';
+	} else {
+		icon.innerHTML = '<i class="fa fa-volume-up" aria-hidden="true"></i>';
+	}
 }
 function changeCurrentTime() {
-	video.currentTime = video.duration / 100 * this.value;
+	video.currentTime = video.duration / 1000 * this.value;
 }
 function showControls() {
 	controls.style.visibility = 'visible';

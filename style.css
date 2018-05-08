@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 html {
 padding: 0;
 margin: 0;
@@ -8,6 +9,7 @@ body {
 	padding: 0;
 	margin: 0;
 	font-size: 16px;
+	font-family: 'Roboto', sans-serif;
 }
 
 @media (min-width: 790px) {
@@ -24,6 +26,7 @@ body {
 	width: 100%;
 }
 .controls {
+	height: 2.2rem;
 	background: black;
 	color: white;
 	display: -webkit-box;
@@ -37,53 +40,65 @@ body {
 	 align-items: center;
 }
 .btn {
+	color: white;
+	background: black;
+	border: none;
 	font-size: 1em;
-	padding: 0 1%;
+	padding: 0;
 	min-width: 5%;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
+	cursor: pointer;
 }
-
+.btn:hover, .btn:active {
+	color: darkorchid;
+}
+.current-time {
+	font-size: 0.9rem;
+}
 .range {
 	-webkit-appearance: none;
 	width: 100%;
 	height: 5px;
 	border-radius: 3px;
-	background-color: white;
+	background: white;
 }
 .range::-moz-range-track {
 	-moz-appearance: none;
 	width: 100%;
 	height: 5px;
 	border-radius: 3px;
-	background-color: white;
+	background: white;
+
 }
 .range::-webkit-slider-thumb {
 	-webkit-appearance: none;
-	background-color: steelblue;
-	width: 10px;
-	height: 10px;
+	background-color: darkorchid;
+	border: none;
+	width: 12px;
+	height: 12px;
 	border-radius: 50%;
 	cursor: pointer;
 	}
 .range::-moz-range-thumb {
 	-moz-appearance: none;
-		background-color: steelblue;
-		width: 10px;
-		height: 10px;
+		background-color: darkorchid;
+		border: none;
+		width: 12px;
+		height: 12px;
 		border-radius: 50%;
 		cursor: pointer;
 		}	
 .range:focus {
 	outline: none;
 }
-.range::-ms-track {
+/* .range::-ms-track {
 	width: 100%;
 	background: transparent;
 	cursor: pointer;
 	border-color: transparent;
 	color: transparent;
-}
+} */
 .scroll-bar {
 	-webkit-box-sizing: border-box;
 	        box-sizing: border-box;
