@@ -2,7 +2,6 @@ var video = document.querySelector('.video');
 var playBtn = document.querySelector('.play-pause-btn');
 var controls = document.querySelector('.controls');
 var scrollBar = document.querySelector('.scroll-bar');
-var time = document.querySelector('.current-time');
 var volume = document.querySelector('.volume');
 var fullscreen = document.querySelector('.fullscreen');
 
@@ -15,8 +14,10 @@ video.addEventListener('loadedmetadata', setCurrentTime);
 video.addEventListener('canplaythrough', setVolume);
 video.addEventListener('timeupdate', displayTiming);
 video.addEventListener('timeupdate', setCurrentTime);
-// video.addEventListener('mouseover', showControls);
-// video.addEventListener('mouseout', hideControls);
+video.addEventListener('mouseover', showControls);
+controls.addEventListener('mouseover', showControls);
+video.addEventListener('mouseout', hideControls);
+controls.addEventListener('mouseout', hideControls);
 
 function runFullscreen() {
 	if (video.requestFullscreen) {
@@ -30,6 +31,7 @@ function runFullscreen() {
 	}
 }
 function displayTiming() {
+	var time = document.querySelector('.current-time');
 	var currentMinutes = Math.floor(video.currentTime/60);
 	var currentSeconds = Math.floor(video.currentTime - (currentMinutes * 60));
 	var durationMinutes = Math.floor(video.duration/60);
