@@ -4,7 +4,9 @@ var controls = document.querySelector('.controls');
 var scrollBar = document.querySelector('.scroll-bar');
 var volume = document.querySelector('.volume');
 var fullscreen = document.querySelector('.fullscreen');
+var screenPlayBtn = document.querySelector('.screen-play-btn');
 
+screenPlayBtn.addEventListener('click', playVideo);
 fullscreen.addEventListener('click', runFullscreen);
 scrollBar.addEventListener('change', changeCurrentTime);
 volume.addEventListener('change', changeVolume);
@@ -15,6 +17,7 @@ video.addEventListener('canplaythrough', setVolume);
 video.addEventListener('timeupdate', displayTiming);
 video.addEventListener('timeupdate', setCurrentTime);
 video.addEventListener('mouseover', showControls);
+video.addEventListener('click', pauseVideo);
 controls.addEventListener('mouseover', showControls);
 video.addEventListener('mouseout', hideControls);
 controls.addEventListener('mouseout', hideControls);
@@ -64,14 +67,16 @@ function hideControls() {
 }
 function playVideo() {
 	video.play();
-	this.removeEventListener('click', playVideo);
-	this.addEventListener('click', pauseVideo);
-	this.innerHTML = '<i class="fa fa-pause" aria-hidden="true"></i>';
+	screenPlayBtn.style.display = 'none';
+	playBtn.removeEventListener('click', playVideo);
+	playBtn.addEventListener('click', pauseVideo);
+	playBtn.innerHTML = '<i class="fa fa-pause" aria-hidden="true"></i>';
 }
 
 function pauseVideo() {
 	video.pause();
-	this.removeEventListener('click', pauseVideo);
-	this.addEventListener('click', playVideo);
-	this.innerHTML = '<i class="fa fa-play" aria-hidden="true"></i>';
+	screenPlayBtn.style.display = 'block';
+	playBtn.removeEventListener('click', pauseVideo);
+	playBtn.addEventListener('click', playVideo);
+	playBtn.innerHTML = '<i class="fa fa-play" aria-hidden="true"></i>';
 }
