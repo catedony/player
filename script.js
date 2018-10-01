@@ -6,21 +6,7 @@ const volume = document.querySelector('.volume');
 const fullscreen = document.querySelector('.fullscreen');
 const screenPlayBtn = document.querySelector('.screen-play-btn');
 
-screenPlayBtn.addEventListener('click', playVideo);
-fullscreen.addEventListener('click', runFullscreen);
-scrollBar.addEventListener('change', changeCurrentTime);
-volume.addEventListener('change', changeVolume);
-playBtn.addEventListener('click', playVideo);
-video.addEventListener('loadedmetadata', displayTiming);
-video.addEventListener('loadedmetadata', setCurrentTime);
-video.addEventListener('canplaythrough', setVolume);
-video.addEventListener('timeupdate', displayTiming);
-video.addEventListener('timeupdate', setCurrentTime);
-video.addEventListener('mouseover', showControls);
-video.addEventListener('click', pauseVideo);
-controls.addEventListener('mouseover', showControls);
-video.addEventListener('mouseout', hideControls);
-controls.addEventListener('mouseout', hideControls);
+
 
 let runFullscreen = () => {
 	if (video.requestFullscreen) {
@@ -33,13 +19,18 @@ let runFullscreen = () => {
 		video.webkitRequestFullscreen();
 	}
 };
+
+let addZero = (n) => {
+	return n.toString().length < 2 ? '0' + n : n;
+}
 let displayTiming = () => {
 	let time = document.querySelector('.current-time');
 	let currentMinutes = Math.floor(video.currentTime/60);
 	let currentSeconds = Math.floor(video.currentTime - (currentMinutes * 60));
 	let durationMinutes = Math.floor(video.duration/60);
 	let durationSeconds = Math.floor(video.duration - (durationMinutes * 60));
-	time.innerHTML = currentMinutes + ':'+ currentSeconds + ' / ' + durationMinutes + ':'+ durationSeconds;
+	time.innerHTML = addZero(currentMinutes) + ':'+ addZero(currentSeconds) + ' / ' 
+			+ addZero(durationMinutes) + ':'+ addZero(durationSeconds);
 	};
 let setCurrentTime = () => {
 	scrollBar.value = Math.floor(1000 / video.duration * video.currentTime);
@@ -47,7 +38,7 @@ let setCurrentTime = () => {
 
 let setVolume = () =>	volume.value = video.volume * 100;
 
-let changeVolume = () => {
+function changeVolume () {
 	video.volume = this.value / 100;
 	var icon = document.querySelector('.volume-icon');
 	if (video.volume == 0) {
@@ -56,8 +47,9 @@ let changeVolume = () => {
 		icon.innerHTML = '<i class="fa fa-volume-up" aria-hidden="true"></i>';
 	}
 };
-let changeCurrentTime = () => video.currentTime = video.duration / 1000 * this.value;
-
+function changeCurrentTime() {
+	video.currentTime = video.duration / 1000 * this.value;
+}
 let showControls = () => controls.style.visibility = 'visible';
 
 let hideControls = () =>	controls.style.visibility = 'hidden';
@@ -77,3 +69,19 @@ let pauseVideo = () => {
 	playBtn.addEventListener('click', playVideo);
 	playBtn.innerHTML = '<i class="fa fa-play" aria-hidden="true"></i>';
 };
+
+screenPlayBtn.addEventListener('click', playVideo);
+fullscreen.addEventListener('click', runFullscreen);
+scrollBar.addEventListener('change', changeCurrentTime);
+volume.addEventListener('change', changeVolume);
+playBtn.addEventListener('click', playVideo);
+video.addEventListener('loadedmetadata', displayTiming);
+video.addEventListener('loadedmetadata', setCurrentTime);
+video.addEventListener('canplaythrough', setVolume);
+video.addEventListener('timeupdate', displayTiming);
+video.addEventListener('timeupdate', setCurrentTime);
+video.addEventListener('mouseover', showControls);
+video.addEventListener('click', pauseVideo);
+controls.addEventListener('mouseover', showControls);
+video.addEventListener('mouseout', hideControls);
+controls.addEventListener('mouseout', hideControls);
